@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Insurance Search | Vehicle Insurance Manager</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="admin-avatar" href="settings.html" title="Settings">
+        <img id="adminAvatarImg" class="hidden" alt="Admin profile" />
+        <span id="adminAvatarFallback">AD</span>
+      </a>
+      <a class="logo" href="insurance.html">Vehicle Insurance Manager</a>
+      <nav>
+        <a href="insurance.html" aria-current="page">Insurance</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="customers.html">Customers</a>
+        <a href="settings.html">Settings</a>
+        <button id="logoutBtn" class="icon-button" title="Logout" type="button">Log out</button>
+      </nav>
+    </header>
+
+    <main class="app-shell">
+      <section class="page-heading">
+        <p class="eyebrow">Vehicle Insurance Lookup</p>
+        <h1>Check customer insurance by vehicle registration number</h1>
+      </section>
+
+      <section id="setupNotice" class="notice hidden"></section>
+
+      <section class="panel">
+        <form id="searchForm" class="search-grid">
+          <label>
+            Select the Vehicle Type
+            <select id="vehicleType">
+              <option value="">All vehicle types</option>
+              <option value="car">Car</option>
+              <option value="auto">Auto</option>
+              <option value="bike">Bike</option>
+              <option value="load_van">Load Van</option>
+              <option value="truck">Truck</option>
+              <option value="bus">Bus</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label>
+            Vehicle Reg No
+            <input id="regNo" type="text" placeholder="Enter vehicle reg no" required />
+          </label>
+          <button class="button primary" type="submit">Search</button>
+        </form>
+      </section>
+
+      <section id="resultPanel" class="result-panel hidden"></section>
+    </main>
+
+    <script type="module" src="assets/insurance.js"></script>
+  </body>
+</html>

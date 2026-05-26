@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register | Vehicle Insurance Manager</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  </head>
+  <body class="auth-page">
+    <main class="center-shell">
+      <section class="auth-card">
+        <h1>Register</h1>
+        <p class="muted">Create an account to manage vehicle insurance records.</p>
+        <form id="registerForm" class="stacked-form">
+          <label>
+            Name
+            <input id="name" type="text" placeholder="Enter name" required />
+          </label>
+          <label>
+            Mobile Number
+            <input id="mobile" type="tel" placeholder="Enter mobile number" pattern="[0-9]{10}" required />
+          </label>
+          <label>
+            Email ID
+            <input id="email" type="email" placeholder="Enter email id" required />
+          </label>
+          <label>
+            Password
+            <input id="password" type="password" minlength="6" placeholder="Enter password" required />
+          </label>
+          <label>
+            Confirm Password
+            <input id="confirmPassword" type="password" minlength="6" placeholder="Enter confirm password" required />
+          </label>
+          <button class="button primary" type="submit">Register</button>
+        </form>
+        <p id="authMessage" class="form-message"></p>
+        <p class="switch-link">Already registered? <a href="login.html">Login</a></p>
+      </section>
+    </main>
+    <script type="module" src="assets/register.js"></script>
+  </body>
+</html>

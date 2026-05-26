@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customers | Vehicle Insurance Manager</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="admin-avatar" href="settings.html" title="Settings">
+        <img id="adminAvatarImg" class="hidden" alt="Admin profile" />
+        <span id="adminAvatarFallback">AD</span>
+      </a>
+      <a class="logo" href="insurance.html">Vehicle Insurance Manager</a>
+      <nav>
+        <a href="insurance.html">Insurance</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="customers.html" aria-current="page">Customers</a>
+        <a href="settings.html">Settings</a>
+        <button id="logoutBtn" class="icon-button" title="Logout" type="button">Log out</button>
+      </nav>
+    </header>
+
+    <main class="app-shell">
+      <section class="page-heading">
+        <p class="eyebrow">Customer Records</p>
+        <h1>Manage saved vehicle insurance customers</h1>
+      </section>
+
+      <section id="setupNotice" class="notice hidden"></section>
+
+      <section class="panel">
+        <div class="toolbar">
+          <label>Search <input id="searchInput" type="search" placeholder="Enter owner, mobile or reg no" /></label>
+          <label>Vehicle Type
+            <select id="vehicleFilter">
+              <option value="">All vehicles</option>
+              <option value="car">Car</option>
+              <option value="auto">Auto</option>
+              <option value="bike">Bike</option>
+              <option value="load_van">Load Van</option>
+              <option value="truck">Truck</option>
+              <option value="bus">Bus</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label>Status
+            <select id="statusFilter">
+              <option value="">All status</option>
+              <option value="pending">Pending</option>
+              <option value="paid">Paid</option>
+            </select>
+          </label>
+          <button id="refreshBtn" class="button secondary" type="button">Refresh</button>
+        </div>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="panel-title">
+          <h2>Insurance Customers</h2>
+          <p id="recordCount">0 records</p>
+        </div>
+        <div id="customerTable" class="table-wrap"></div>
+      </section>
+    </main>
+
+    <dialog id="editDialog" class="record-dialog">
+      <form id="editForm" class="stacked-form compact">
+        <div class="panel-title">
+          <h2>Edit Customer</h2>
+          <button id="closeDialogBtn" class="icon-button" title="Close" type="button">X</button>
+        </div>
+        <input id="editId" type="hidden" />
+        <label>Owner Name <input id="editOwnerName" placeholder="Enter owner name" required /></label>
+        <label>Mobile Number <input id="editOwnerMobile" type="tel" pattern="[0-9]{10}" placeholder="Enter mobile number" required /></label>
+        <label>Vehicle Type
+          <select id="editVehicleType" required>
+            <option value="car">Car</option>
+            <option value="auto">Auto</option>
+            <option value="bike">Bike</option>
+            <option value="load_van">Load Van</option>
+            <option value="truck">Truck</option>
+            <option value="bus">Bus</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+        <label>Vehicle Reg No <input id="editRegNo" placeholder="Enter vehicle reg no" required /></label>
+        <label>Loan Details <textarea id="editLoanDetails" rows="3" placeholder="Enter loan details"></textarea></label>
+        <div class="form-row">
+          <label>Claimed Amount <input id="editClaimedAmount" type="number" min="0" step="0.01" placeholder="Enter claimed amount" /></label>
+          <label>Payment Due Date <input id="editDueDate" type="date" required /></label>
+        </div>
+        <div class="form-row">
+          <label>Fee Paid Date <input id="editPaidDate" type="date" /></label>
+          <label>Payment Status
+            <select id="editPaymentStatus">
+              <option value="pending">Pending</option>
+              <option value="paid">Paid</option>
+            </select>
+          </label>
+        </div>
+        <label class="upload-tile">
+          <span>+</span>
+          Replace customer photo
+          <input id="editCustomerPhoto" type="file" accept="image/jpeg,image/jpg,image/png,image/webp" />
+        </label>
+        <label class="upload-tile">
+          <span>+</span>
+          Replace bill PDF
+          <input id="editBillPdf" type="file" accept="application/pdf" />
+        </label>
+        <label class="upload-tile">
+          <span>+</span>
+          Add vehicle proof photos
+          <input id="editVehicleProofs" type="file" accept="image/jpeg,image/jpg" multiple />
+        </label>
+        <div class="dialog-actions">
+          <button id="deleteRecordBtn" class="button danger" type="button">Delete</button>
+          <button class="button primary" type="submit">Save Changes</button>
+        </div>
+        <p id="editMessage" class="form-message"></p>
+      </form>
+    </dialog>
+
+    <dialog id="detailDialog" class="record-dialog detail-dialog">
+      <div class="panel-title">
+        <h2>Customer Details</h2>
+        <button id="closeDetailDialogBtn" class="icon-button" title="Close" type="button">X</button>
+      </div>
+      <div id="detailContent"></div>
+    </dialog>
+
+    <script type="module" src="assets/customers.js"></script>
+  </body>
+</html>

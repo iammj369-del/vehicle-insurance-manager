@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | Vehicle Insurance Manager</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="admin-avatar" href="settings.html" title="Settings">
+        <img id="adminAvatarImg" class="hidden" alt="Admin profile" />
+        <span id="adminAvatarFallback">AD</span>
+      </a>
+      <a class="logo" href="insurance.html">Vehicle Insurance Manager</a>
+      <nav>
+        <a href="insurance.html">Insurance</a>
+        <a href="dashboard.html" aria-current="page">Dashboard</a>
+        <a href="customers.html">Customers</a>
+        <a href="settings.html">Settings</a>
+        <button id="logoutBtn" class="icon-button" title="Logout" type="button">Log out</button>
+      </nav>
+    </header>
+
+    <main class="app-shell">
+      <section class="page-heading">
+        <p class="eyebrow">Admin Dashboard</p>
+        <h1>Track ending dates and add customer vehicle insurance records</h1>
+      </section>
+
+      <section id="setupNotice" class="notice hidden"></section>
+
+      <section class="metric-grid">
+        <article class="metric-card urgent">
+          <span id="dueWeekCount">0</span>
+          Ending within 7 days
+        </article>
+        <article class="metric-card warning">
+          <span id="dueMonthCount">0</span>
+          Ending within 30 days
+        </article>
+        <article class="metric-card calm">
+          <span id="activeCount">0</span>
+          Active records
+        </article>
+      </section>
+
+      <section class="two-column">
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Payment Ending Notifications</h2>
+          </div>
+          <div id="dueList" class="due-list"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-title">
+            <h2>Add Customer</h2>
+            <p>Store owner, vehicle, loan and insurance details.</p>
+          </div>
+          <form id="customerForm" class="stacked-form compact">
+            <label>Owner Name <input id="ownerName" placeholder="Enter owner name" required /></label>
+            <label>Mobile Number <input id="ownerMobile" type="tel" pattern="[0-9]{10}" placeholder="Enter mobile number" required /></label>
+            <label>Vehicle Type
+              <select id="vehicleType" required>
+                <option value="">Choose vehicle</option>
+                <option value="car">Car</option>
+                <option value="auto">Auto</option>
+                <option value="bike">Bike</option>
+                <option value="load_van">Load Van</option>
+                <option value="truck">Truck</option>
+                <option value="bus">Bus</option>
+                <option value="other">Other</option>
+              </select>
+            </label>
+            <label>Vehicle Reg No <input id="regNo" placeholder="Enter vehicle reg no" required /></label>
+            <label>Loan Details <textarea id="loanDetails" rows="3" placeholder="Enter loan details"></textarea></label>
+            <div class="form-row">
+              <label>Claimed Amount <input id="claimedAmount" type="number" min="0" step="0.01" placeholder="Enter claimed amount" /></label>
+              <label>Payment Due Date <input id="dueDate" type="date" required /></label>
+            </div>
+            <div class="form-row">
+              <label>Fee Paid Date <input id="paidDate" type="date" /></label>
+              <label>Payment Status
+                <select id="paymentStatus">
+                  <option value="pending">Pending</option>
+                  <option value="paid">Paid</option>
+                </select>
+              </label>
+            </div>
+            <label class="upload-tile">
+              <span>+</span>
+              Customer photo, JPG/PNG/WebP
+              <input id="customerPhoto" type="file" accept="image/jpeg,image/jpg,image/png,image/webp" />
+            </label>
+            <label class="upload-tile">
+              <span>+</span>
+              Bill PDF, max 10MB
+              <input id="billPdf" type="file" accept="application/pdf" />
+            </label>
+            <label class="upload-tile">
+              <span>+</span>
+              Vehicle proof photos, JPEG
+              <input id="vehicleProofs" type="file" accept="image/jpeg,image/jpg" multiple />
+            </label>
+            <button class="button primary" type="submit">Save Customer</button>
+            <p id="formMessage" class="form-message"></p>
+          </form>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="assets/dashboard.js"></script>
+  </body>
+</html>

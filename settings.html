@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Settings | Vehicle Insurance Manager</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="admin-avatar" href="settings.html" title="Settings">
+        <img id="adminAvatarImg" class="hidden" alt="Admin profile" />
+        <span id="adminAvatarFallback">AD</span>
+      </a>
+      <a class="logo" href="insurance.html">Vehicle Insurance Manager</a>
+      <nav>
+        <a href="insurance.html">Insurance</a>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="customers.html">Customers</a>
+        <a href="settings.html" aria-current="page">Settings</a>
+        <button id="logoutBtn" class="icon-button" title="Logout" type="button">Log out</button>
+      </nav>
+    </header>
+
+    <main class="app-shell">
+      <section class="page-heading">
+        <p class="eyebrow">Admin Settings</p>
+        <h1>Manage profile and business details</h1>
+      </section>
+
+      <section id="setupNotice" class="notice hidden"></section>
+
+      <section class="panel settings-panel">
+        <form id="settingsForm" class="stacked-form compact">
+          <div class="settings-profile-preview">
+            <div class="admin-photo-editor">
+              <button id="viewProfilePhotoBtn" class="profile-preview-button" type="button" title="View profile photo">
+                <img id="profilePreview" class="customer-photo hidden" alt="Admin profile" />
+                <span id="profilePreviewFallback">AD</span>
+              </button>
+              <label class="profile-add-button" title="Upload profile photo">
+                +
+                <input id="profilePhoto" type="file" accept="image/jpeg,image/jpg,image/png,image/webp" />
+              </label>
+            </div>
+            <div>
+              <h2>Admin Profile</h2>
+            </div>
+          </div>
+          <div class="form-row">
+            <label>Name <input id="adminName" placeholder="Enter name" /></label>
+            <label>Mobile Number <input id="adminMobile" type="tel" pattern="[0-9]{10}" placeholder="Enter mobile number" /></label>
+          </div>
+          <label>Email ID <input id="adminEmail" type="email" placeholder="Enter email id" /></label>
+          <div class="form-row">
+            <label>Business Name <input id="businessName" placeholder="Enter business name" /></label>
+            <label>Business Mobile <input id="businessMobile" type="tel" pattern="[0-9]{10}" placeholder="Enter business mobile number" /></label>
+          </div>
+          <label>Business Address <textarea id="businessAddress" rows="4" placeholder="Enter business address"></textarea></label>
+          <button class="button primary" type="submit">Save Settings</button>
+          <p id="settingsMessage" class="form-message"></p>
+        </form>
+      </section>
+    </main>
+
+    <dialog id="profilePhotoDialog" class="record-dialog profile-photo-dialog">
+      <div class="panel-title">
+        <h2>Profile Photo</h2>
+        <button id="closeProfilePhotoBtn" class="icon-button" title="Close" type="button">X</button>
+      </div>
+      <div class="profile-photo-frame">
+        <img id="profilePhotoLarge" alt="Admin profile large view" />
+      </div>
+    </dialog>
+
+    <script type="module" src="assets/settings.js"></script>
+  </body>
+</html>

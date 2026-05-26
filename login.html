@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login | Vehicle Insurance Manager</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  </head>
+  <body class="auth-page">
+    <main class="center-shell">
+      <section class="auth-card">
+        <h1>Login</h1>
+        <p class="muted">Access customer vehicle insurance details.</p>
+        <form id="loginForm" class="stacked-form">
+          <label>
+            Email ID
+            <input id="email" type="email" placeholder="Enter email id" required />
+          </label>
+          <label>
+            Password
+            <input id="password" type="password" placeholder="Enter password" required />
+          </label>
+          <button class="button primary glossy-button" type="submit">Login</button>
+        </form>
+        <form id="resetPasswordForm" class="stacked-form hidden">
+          <label>
+            New Password
+            <input id="newPassword" type="password" minlength="6" placeholder="Enter new password" />
+          </label>
+          <label>
+            Confirm New Password
+            <input id="confirmNewPassword" type="password" minlength="6" placeholder="Enter confirm new password" />
+          </label>
+          <button class="button primary glossy-button" type="submit">Update Password</button>
+        </form>
+        <p id="authMessage" class="form-message"></p>
+        <p class="switch-link"><button id="forgotPasswordBtn" class="button forgot-button glossy-button" type="button">Forgot Password?</button></p>
+        <p class="switch-link">New manager? <a href="register.html">Create account</a></p>
+      </section>
+    </main>
+    <script type="module" src="assets/login.js"></script>
+  </body>
+</html>
